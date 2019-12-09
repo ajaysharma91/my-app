@@ -1,20 +1,20 @@
 import React from 'react';
-import {useState} from 'react';
+//import {useState} from 'react';
 import './App.css';
 import Person from './Person';
 
-function App() {
-  const [personState,personSetState] = useState( {
+class App extends React.Component {
+  state= {
     persons :[
       {name:"ajay sharma", age:25},
       {name:"vijay sharma", age:25},
       {name:"kailash sharma", age:25}
     ]
-  });
+  }
 
-  const handleStateChange = ()=>{
+   handleStateChange = ()=>{
     console.log("changed");
-    personSetState({
+    this.setState({
       persons :[
       {name:"ravbi sharma", age:25},
       {name:"vijay devedas", age:35},
@@ -23,15 +23,31 @@ function App() {
   })
   }
 
+   nameChangeHandler = (event)=>{
+    this.setState({
+      persons :[
+      {name:"ravbi sharma", age:25},
+      {name:"vijay devedas", age:35},
+      {name:event.target.value, age:25}
+    ]
+  })
+  }
+  render(){
+    const style={
+      backgroundColor:"red",
+      width:'200px',
+      font:'inherit'
+    }
   return (
+   
     <div className="App">
-     <Person name={personState.persons[0].name} age={personState.persons[0].age}/>
-     <Person name={personState.persons[1].name} age={personState.persons[1].age}> I'm going to home </Person>
-     <Person name={personState.persons[2].name} age={personState.persons[2].age}/>
-     <button onClick={handleStateChange}>Changed</button>
+     <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
+     <Person name={this.state.persons[1].name} age={this.state.persons[1].age}> I'm going to home </Person>
+     <Person name={this.state.persons[2].name} age={this.state.persons[2].age} changed={this.nameChangeHandler}/>
+     <button style={style} onClick={this.handleStateChange}>Changed</button>
     </div>
   );
-  
+  }
 }
 
 export default App;
