@@ -1,12 +1,8 @@
 import React from 'react';
 
 const IutputData = (props)=>{
-    return(
-        <div className="IutputData">
-           Enter Name: <input type="text"/>
-           Enter Age: <input type="text"/>
-        </div>
-    );
+    return  <input type="text" onChange={props.changed} value={props.currentName}/>
+        
 }
 
-export default OutputData;
+export default IutputData;
