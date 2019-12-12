@@ -13,14 +13,11 @@ class AppConditional extends React.Component {
     showText:"Show the Person Containt"
   }
   deletehandler = (index)=>{
-      console.log(index);
-         const person = this.state.persons.slice();
-         console.log(person);
+     const person = this.state.persons.slice();
      person.splice(index,1);
      this.setState({persons:person});
    }
    handleStateChange = ()=>{
-    console.log("changed");
    var shoediv = this.state.showPerson;
    if(shoediv)
    this.setState({showText:"Show The Person Containt"});
@@ -45,6 +42,15 @@ class AppConditional extends React.Component {
     this.setState({persons :persons})
   }
   render(){
+
+      const style = {
+        backgroundColor:'green',
+        color:'white',
+        border:'1px solid white',
+        padding:'8px',
+        textAlign:'center',
+        margin:'10px'
+      }
       let person = null;
       if(this.state.showPerson == true)
       {
@@ -61,12 +67,13 @@ class AppConditional extends React.Component {
                
             </div> 
           );
+          style.backgroundColor='red'
       }
   return (
     <div className="App">
         <h1>Hello This is ReactJS!!!!</h1>
-     {person}
-     <button onClick={this.handleStateChange}>{this.state.showText}</button>
+        <button style={style} onClick={this.handleStateChange}>{this.state.showText}</button>
+      {person}
     </div>
   )};
   
