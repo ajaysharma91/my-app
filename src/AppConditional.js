@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import Radium,{StyleRoot} from 'radium';
 import Person from './Person';
 
 class AppConditional extends React.Component {
@@ -49,15 +50,19 @@ class AppConditional extends React.Component {
         border:'1px solid white',
         padding:'8px',
         textAlign:'center',
-        margin:'10px'
+        margin:'10px',
+        cursor:'pointer',
+        ':hover':{
+          backgroundColor:'lightgreen'
+        }
       }
       let person = null;
-      if(this.state.showPerson == true)
+      if(this.state.showPerson === true)
       {
           person=(
             <div>
                 { this.state.persons.map((person,index) => {
-                return <Person 
+                return <Person key={index}
                 click={()=>this.deletehandler(index)}
                 name={person.name} 
                 age={person.age}
@@ -67,19 +72,24 @@ class AppConditional extends React.Component {
                
             </div> 
           );
-          style.backgroundColor='red'
+          style.backgroundColor='red';
+          style[':hover']={
+            backgroundColor:"lightblue"
+          }
       }
   return (
+    <StyleRoot>
     <div className="App">
         <h1>Hello This is ReactJS!!!!</h1>
         <button style={style} onClick={this.handleStateChange}>{this.state.showText}</button>
       {person}
     </div>
+    </StyleRoot>
   )};
   
 }
 
-export default AppConditional;
+export default Radium(AppConditional) ;
 
 
 
