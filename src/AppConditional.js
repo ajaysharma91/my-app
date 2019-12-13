@@ -1,8 +1,20 @@
 import React from 'react';
 import './App.css';
 import Radium,{StyleRoot} from 'radium';
+import styled from 'styled-components';
 import Person from './Person';
-
+const Stylebutton = styled.button`
+background-color: ${props => props.alt?'red':'green'};
+color:'white';
+border:1px solid white;
+padding:8px;
+textAlign:center;
+margin:10px;
+cursor:pointer;
+&:hover{
+  background-color:${props => props.alt?'blue':'lightgreen'};
+}
+`;
 class AppConditional extends React.Component {
   state= {
     persons :[
@@ -72,24 +84,24 @@ class AppConditional extends React.Component {
                
             </div> 
           );
-          style.backgroundColor='red';
-          style[':hover']={
-            backgroundColor:"lightblue"
-          }
+          // style.backgroundColor='red';
+          // style[':hover']={
+          //   backgroundColor:"lightblue"
+          // }
       }
   return (
-    <StyleRoot>
+    
     <div className="App">
         <h1>Hello This is ReactJS!!!!</h1>
-        <button style={style} onClick={this.handleStateChange}>{this.state.showText}</button>
+        <Stylebutton alt={this.state.showPerson} onClick={this.handleStateChange}>{this.state.showText}</Stylebutton>
       {person}
     </div>
-    </StyleRoot>
+   
   )};
   
 }
 
-export default Radium(AppConditional) ;
+export default AppConditional ;
 
 
 
