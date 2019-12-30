@@ -2,8 +2,8 @@ import React from 'react';
 //import {useState} from 'react';
 import './App.css';
 // import Person from './Person';
-import Validation from './Validation';
-import Char from './Char';
+import Validation from '../Validation';
+import Char from '../components/Char';
 class App extends React.Component {
   
   state={

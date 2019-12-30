@@ -1,21 +1,37 @@
 import React from 'react';
-import './App.css';
+import classes from '../containers/App.css';
 import Radium,{StyleRoot} from 'radium';
 import styled from 'styled-components';
-import Person from './Person';
-const Stylebutton = styled.button`
-background-color: ${props => props.alt?'red':'green'};
-color:'white';
-border:1px solid white;
-padding:8px;
-textAlign:center;
-margin:10px;
-cursor:pointer;
-&:hover{
-  background-color:${props => props.alt?'blue':'lightgreen'};
-}
-`;
+import Person from '../components/Persons/person/Person';
+import Persons from '../components/Persons/Persons';
+import Cockplit from '../components/cockplit/Cockplit';
+// const Stylebutton = styled.button`
+// background-color: ${props => props.alt?'red':'green'};
+// color:'white';
+// border:1px solid white;
+// padding:8px;
+// textAlign:center;
+// margin:10px;
+// cursor:pointer;
+// &:hover{
+//   background-color:${props => props.alt?'blue':'lightgreen'};
+// }
+// `;
 class AppConditional extends React.Component {
+
+  constructor(props){
+    super(props)
+    console.log("constructor [App consitional]....");
+  }
+
+  static getDerivedStateFromProps(props,state){
+    console.log("[AppCondional getDrivedComponentFromProps....",props);
+    return state;
+  }
+
+  componentDidMount(){
+    console.log("AppConditional Component did mount:;...");
+  }
   state= {
     persons :[
       {id:1,name:"ajay sharma", age:25},
@@ -56,6 +72,8 @@ class AppConditional extends React.Component {
   }
   render(){
 
+    console.log("AppCondional render...");
+      let btnClasses='';
       const style = {
         backgroundColor:'green',
         color:'white',
@@ -70,16 +88,21 @@ class AppConditional extends React.Component {
       }
       let person = null;
       if(this.state.showPerson === true)
-      {
+      {    
           person=(
             <div>
-                { this.state.persons.map((person,index) => {
+              <Persons 
+              persons={this.state.persons}
+              clicked={this.deletehandler}
+              changed={this.nameChangeHandler}
+              />
+                {/* { this.state.persons.map((person,index) => {
                 return <Person key={index}
                 click={()=>this.deletehandler(index)}
                 name={person.name} 
                 age={person.age}
                 changed={(event)=>this.nameChangeHandler(event,person.id)} />
-            })}
+            })} */}
                 
                
             </div> 
@@ -88,13 +111,15 @@ class AppConditional extends React.Component {
           // style[':hover']={
           //   backgroundColor:"lightblue"
           // }
+          btnClasses=classes.Red;
       }
   return (
     
     <div className="App">
-        <h1>Hello This is ReactJS!!!!</h1>
-        <Stylebutton alt={this.state.showPerson} onClick={this.handleStateChange}>{this.state.showText}</Stylebutton>
-      {person}
+        <Cockplit clicked={this.handleStateChange} showtext={this.state.showText}/>
+        {/* <h1>Hello This is ReactJS!!!!</h1>
+        <button onClick={this.handleStateChange}>{this.state.showText}</button> */}
+        {person}
     </div>
    
   )};

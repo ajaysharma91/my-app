@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import App from './App';
+ import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
-import AppConditional from './AppConditional';
+import AppConditional from './containers/AppConditional'
 
 ReactDOM.render(<AppConditional />, document.getElementById('root'));
 
